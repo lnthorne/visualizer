@@ -24,6 +24,11 @@ class MainController:
 
         left_channel = audio_samples[:, 0]
         right_channel = audio_samples[:, 1]
+
+        # left_channel_norm = left_channel / np.max(np.abs(left_channel))
+        # right_channel = right_channel / np.max(np.abs(right_channel))
+
+
         print("Left channel", left_channel)
         print("Right channel", right_channel)
 
