@@ -1,10 +1,9 @@
 import wave
 import numpy as np
 
-class MainController:
-    def __init__(self, view, model):
+class AudioController:
+    def __init__(self, view):
         self.view = view
-        self.model = model
         self.view.set_controller(self)
 
     def load_file(self, file_path):
@@ -24,13 +23,6 @@ class MainController:
 
         left_channel = audio_samples[:, 0]
         right_channel = audio_samples[:, 1]
-
-        # left_channel_norm = left_channel / np.max(np.abs(left_channel))
-        # right_channel = right_channel / np.max(np.abs(right_channel))
-
-
-        print("Left channel", left_channel)
-        print("Right channel", right_channel)
 
         self.view.display_waveform(left_channel, right_channel)
         self.view.display_info(num_frames, sample_rate)

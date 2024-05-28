@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import ttk, filedialog
 import numpy as np
 
-class MainView: 
+class AudioView: 
     def __init__(self, root):
         self.root = root
         self.frame = ttk.Frame(self.root, padding="10")
@@ -23,7 +23,7 @@ class MainView:
         self.open_button.grid(row=1, column=0, pady=10)
 
         self.info_label = ttk.Label(self.frame, text="No file loaded")
-        self.info_label.grid(row=1, column=1, pady=10)
+        self.info_label.grid(row=1, column=1, pady=10, padx=(0, 100))
 
 
     def open_file(self):

@@ -1,16 +1,14 @@
 import tkinter as tk
-from src.views.main_view import MainView
-from src.models.main_model import MainModel
-from src.controllers.main_controller import MainController
+from src.views.menu_view import MenuView
+from src.controllers.menu_controller import MenuController
 
 class App: 
     def __init__(self):
         self.root = tk.Tk()
         self.root.title("My Visualizer")
         self.root.geometry("800x600")
-        self.main_view = MainView(self.root)
-        self.main_model = MainModel()
-        self.main_controller = MainController(self.main_view, self.main_model)
+        self.main_view = MenuView(self.root)
+        self.main_controller = MenuController(self.main_view)
         
     def run(self):
         self.root.mainloop()
