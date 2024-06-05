@@ -1,6 +1,5 @@
 import tkinter as tk
 from tkinter import ttk, filedialog
-import numpy as np
 
 class AudioView: 
     def __init__(self, root):
@@ -22,7 +21,7 @@ class AudioView:
         self.open_button = ttk.Button(self.button_frame, text="Open .wav File", command=self.open_file)
         self.open_button.grid(row=0, column=0, padx=5)
 
-        self.exit_button = ttk.Button(self.button_frame, text="Exit", command=self.root.quit)
+        self.exit_button = ttk.Button(self.button_frame, text="Exit", command=self.exit_app)
         self.exit_button.grid(row=0, column=1, padx=5)
 
         self.info_label = ttk.Label(self.frame, text="No file loaded")
@@ -44,13 +43,15 @@ class AudioView:
         height = int(self.canvas["height"])
         mid_left = height // 4
         mid_right = 3 * height // 4
+        y_scale = height // 4
 
         # Plot left channel
         prev_x = 0
         prev_y = mid_left
+        x_step_size = width / len(left_channel)
         for i in range(len(left_channel)):
-            x = int(i * width / len(left_channel))
-            y = int(mid_left - (left_channel[i] * (height // 4)))
+            x = int(i * x_step_size)
+            y = int(mid_left - (left_channel[i] * y_scale))
             self.canvas.create_line(prev_x, prev_y, x, y, fill="blue")
             prev_x = x
             prev_y = y
@@ -58,12 +59,16 @@ class AudioView:
         # Plot right channel
         prev_x = 0
         prev_y = mid_right
+        x_step_size = width / len(right_channel)
         for i in range(len(right_channel)):
-            x = int(i * width / len(right_channel))
-            y = int(mid_right - (right_channel[i] * (height // 4)))
+            x = int(i * x_step_size)
+            y = int(mid_right - (right_channel[i] * y_scale))
             self.canvas.create_line(prev_x, prev_y, x, y, fill="red")
             prev_x = x
             prev_y = y
 
     def display_info(self, num_samples, sample_rate):
         self.info_label.config(text=f"Samples: {num_samples}, Sample Rate: {sample_rate}")
+    
+    def exit_app(self):
+        self.root.quit()
