@@ -7,7 +7,6 @@ class MenuView:
         self.frame = ttk.Frame(root, padding="10")
         self.frame.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
         
-        # Configure grid rows and columns to center content
         root.grid_rowconfigure(0, weight=1)
         root.grid_columnconfigure(0, weight=1)
         self.frame.grid_rowconfigure(0, weight=1)
