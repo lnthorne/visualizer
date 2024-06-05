@@ -8,19 +8,22 @@ class AudioView:
         self.frame = ttk.Frame(self.root, padding="10")
         self.frame.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
 
-      # Configure grid rows and columns to center content
         root.grid_rowconfigure(0, weight=1)
         root.grid_columnconfigure(0, weight=1)
         self.frame.grid_rowconfigure(0, weight=1)
-        self.frame.grid_rowconfigure(1, weight=1)
-        self.frame.grid_rowconfigure(2, weight=1)
         self.frame.grid_columnconfigure(0, weight=1)
 
         self.canvas = tk.Canvas(self.frame, width=600, height=400, bg="white")
         self.canvas.grid(row=0, column=0, columnspan=2, pady=20)
 
-        self.open_button = ttk.Button(self.frame, text="Open .wav File", command=self.open_file)
-        self.open_button.grid(row=1, column=0, pady=10)
+        self.button_frame = ttk.Frame(self.frame, padding="10")
+        self.button_frame.grid(row=1, column=0, pady=10, sticky=(tk.W, tk.E))
+
+        self.open_button = ttk.Button(self.button_frame, text="Open .wav File", command=self.open_file)
+        self.open_button.grid(row=0, column=0, padx=5)
+
+        self.exit_button = ttk.Button(self.button_frame, text="Exit", command=self.root.quit)
+        self.exit_button.grid(row=0, column=1, padx=5)
 
         self.info_label = ttk.Label(self.frame, text="No file loaded")
         self.info_label.grid(row=1, column=1, pady=10, padx=(0, 100))

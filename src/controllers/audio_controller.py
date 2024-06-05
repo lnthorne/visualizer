@@ -14,11 +14,11 @@ class AudioController:
             num_frames = params.nframes
             audio_data = wav_file.readframes(num_frames)
 
-# Convert the raw audio bytes to a numpy array
+        # Convert the raw audio bytes to a numpy array
         audio_samples = np.frombuffer(audio_data, dtype=np.int16)
         audio_samples = audio_samples.reshape(-1, num_channels)
 
-# Normalize the audio samples from -1.0 to 1.0
+        # Normalize the audio samples from -1.0 to 1.0
         audio_samples = audio_samples / np.max(np.abs(audio_samples), axis=0)
 
         left_channel = audio_samples[:, 0]
